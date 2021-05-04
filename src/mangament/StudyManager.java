@@ -5,34 +5,39 @@ import java.util.Scanner;
 
 import management2.Holiday;
 import management2.Holiday2;
+import management2.Semester;
+import management2.Semester2;
 import management2.Study;
 import management2.Study2;
+import management2.StudyKind;
+import management2.Studyinput;
+import management2.Studyinput2;
 
 public class StudyManager {
-	ArrayList<Study> Target = new ArrayList<Study>();
-	ArrayList<Study2> Today = new ArrayList<Study2>();
+	ArrayList<Studyinput> Target = new ArrayList<Studyinput>();
+	ArrayList<Studyinput2> Today = new ArrayList<Studyinput2>();
 	Scanner input;
 	StudyManager(Scanner input){
 		this.input = input;
 	}
 	public int kind;
 	public void TargetStudy() {
-		Study study;
+		Studyinput studyinput;
 		while (kind	!= 1 && kind != 2) {
 			System.out.println("스터디 종류를 선택해주세요.");
 			System.out.println("1. 학기중");
 			System.out.println("2. 방학");
 			kind = input.nextInt();
 			if(kind == 1) {
-				study = new Study();
-				study.getUserInput(input);
-				Target.add(study);
+				studyinput = new Semester(StudyKind.학기중);
+				studyinput.getUserInput(input);
+				Target.add(studyinput);
 				break;
 			}
 			else if(kind == 2) {
-				study = new Holiday();
-				study.getUserInput(input);
-				Target.add(study);
+				studyinput = new Holiday(StudyKind.방학);
+				studyinput.getUserInput(input);
+				Target.add(studyinput);
 				break;
 			}
 			else {
@@ -42,16 +47,16 @@ public class StudyManager {
 		}
 	}
 	public void TodayStudy(){
-		Study2 study2;
+		Studyinput2 studyinput2;
 		if(kind == 1) {
-			study2 = new Study2();
-			study2.getUserInput(input);
-			Today.add(study2);
+			studyinput2 = new Semester2(StudyKind.학기중);
+			studyinput2.getUserInput(input);
+			Today.add(studyinput2);
 		}
 		else if(kind == 2) {
-			study2 = new Holiday2();
-			study2.getUserInput(input);
-			Today.add(study2);
+			studyinput2 = new Holiday2(StudyKind.방학);
+			studyinput2.getUserInput(input);
+			Today.add(studyinput2);
 		}
 	}	
 	public void EditStudy(){
@@ -66,14 +71,14 @@ public class StudyManager {
 			num = input.nextInt();
 
 			if(num == 1) {
-				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
+				System.out.print("변경하고 싶은 (목z표)과목명을 입력하세요.");
 				String Subject1 = input.next();
 				for(int i = 0; i< Target.size(); i++) {
-					Study study = Target.get(i);
-					if (study.getSubject1().equals(Subject1)  ) {
+					Studyinput studyinput = Target.get(i);
+					if (studyinput.getSubject1().equals(Subject1)  ) {
 						System.out.println("변경할 과목명을 입력하세요.");
 						String subject1 = input.next();
-						study.setSubject1(subject1);						
+						studyinput.setSubject1(subject1);						
 					}
 				}
 			}
@@ -81,11 +86,11 @@ public class StudyManager {
 				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
 				String Subject2 = input.next();
 				for(int i = 0; i< Target.size(); i++) {
-					Study2 study2 = Today.get(i);
-					if (study2.getSubject2().equals(Subject2)  ) {
+					Studyinput2 studyinput2 = Today.get(i);
+					if (studyinput2.getSubject2().equals(Subject2)  ) {
 						System.out.println("변경할 과목명을 입력하세요.");
 						String subject2 = input.next();
-						study2.setSubject2(subject2);
+						studyinput2.setSubject2(subject2);
 					}
 				}
 			}
@@ -93,11 +98,11 @@ public class StudyManager {
 				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
 				String Subject1 = input.next();
 				for(int i = 0; i< Target.size(); i++) {
-					Study study = Target.get(i);
-					if (study.getSubject1().equals(Subject1)  ) {
+					Studyinput studyinput = Target.get(i);
+					if (studyinput.getSubject1().equals(Subject1)  ) {
 						System.out.println("변경할 시간을 입력하세요.");
 						int targetstudy = input.nextInt();
-						study.setTargetStudyTime(targetstudy);	
+						studyinput.setTargetStudyTime(targetstudy);	
 					}
 				}
 			}
@@ -105,11 +110,11 @@ public class StudyManager {
 				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
 				String Subject2 = input.next();
 				for(int i = 0; i< Today.size(); i++) {
-					Study2 study2 = Today.get(i);
-					if (study2.getSubject2().equals(Subject2)  ) {
+					Studyinput2 studyinput2 = Today.get(i);
+					if (studyinput2.getSubject2().equals(Subject2)  ) {
 						System.out.println("변경할 시간을 입력하세요.");
 						int todaystudy = input.nextInt();
-						study2.setTodayStudyTime(todaystudy);	
+						studyinput2.setTodayStudyTime(todaystudy);	
 					}
 				}
 			}

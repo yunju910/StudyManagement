@@ -2,13 +2,16 @@ package management2;
 
 import java.util.Scanner;
 
-public class Holiday extends Study implements Studyinput {
-	
-	public Holiday(StudyKind kind) {
+public class Semester extends Study implements Studyinput {
+	public Semester(StudyKind kind) {
 		super(kind);
 	}
 	
 	public void getUserInput(Scanner input) {
+		
+		System.out.println("총 공부한시간을 입력하세요.");
+		int Goal = input.nextInt();
+		this.setGoal(Goal);
 		
 		System.out.println("공부할 과목을 입력하세요.");
 		String Subject1 = input.next();
@@ -18,7 +21,7 @@ public class Holiday extends Study implements Studyinput {
 		int TargetStudyTime = input.nextInt();
 		this.setTargetStudyTime(TargetStudyTime);
 	}
-
+	
 	public void printInfo() {
 		String skind = "none";
 		switch(this.kind) {
@@ -30,6 +33,7 @@ public class Holiday extends Study implements Studyinput {
 			break; 
 		default:
 		}
-		System.out.println( "종류: "+ skind + "\n과목: " + Subject1 + "\n공부한시간: " + TargetStudyTime);
+		System.out.println( "종류: "+ skind + "\n총 공부 목표: " + Goal + "\n과목: " + Subject1 + "\n공부한시간: " + TargetStudyTime);
 	}
+
 }

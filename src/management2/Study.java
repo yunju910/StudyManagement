@@ -2,16 +2,27 @@ package management2;
 
 import java.util.Scanner;
 
-public class Study {
+public abstract class Study {
+	protected StudyKind kind = StudyKind.학기중;
+	protected int Goal; 
 	protected String Subject1;
 	protected int TargetStudyTime; 
 	
-	public Study() {
+	public Study(StudyKind kind) {
 	}
 	
-	public Study(String Subject1, int TargetStudyTime) {
+	public Study( int Goal, String Subject1, int TargetStudyTime) {
+		this.Goal = Goal; 
 		this.Subject1 = Subject1;
 		this.TargetStudyTime = TargetStudyTime;
+		
+	}
+	public int getGoal() {
+		return Goal;
+	}
+	
+	public void setGoal(int goal){
+		Goal = goal;
 	}
 	
 	public String getSubject1() {
@@ -30,17 +41,9 @@ public class Study {
 		TargetStudyTime = targetStudyTime;
 	}
 	
-	public void printInfo() {
-		System.out.println("과목: " + Subject1 + "\n공부한시간: " + TargetStudyTime);
-	}
-	public void getUserInput(Scanner input) {
-		System.out.println("공부할 과목을 입력하세요.");
-		String Subject1 = input.next();
-		this.setSubject1(Subject1);
-		
-		System.out.println("공부할 시간을 입력하세요.");
-		int TargetStudyTime = input.nextInt();
-		this.setTargetStudyTime(TargetStudyTime);
-	}
+	
+	public abstract void printInfo();
+	
+	
 
 }
