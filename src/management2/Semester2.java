@@ -8,15 +8,28 @@ public class Semester2 extends Study2 implements Studyinput2 {
 	}
 	public void getUserInput(Scanner input) {
 		
-		System.out.println("총 공부한시간을 입력하세요.");
-		int Goal2 = input.nextInt();
-		this.setGoal(Goal2);
+		char answer = 'x';
+		while(answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
+			System.out.println("총 공부한 시간을 입력하기를 원하시나요? (Y/N)");
+			answer = input.next().charAt(0);
+			if(answer == 'y' || answer == 'Y') {
+				System.out.println("총 공부한 시간을 입력하세요.");
+				int Goal2 = input.nextInt();
+				this.setGoal(Goal2);
+			}
+			else if(answer == 'n' || answer == 'N') {
+				this.Goal2 = 0; 
+				break;
+			}
+			else {
+			}
+		}
 		
-		System.out.println("공부할 과목을 입력하세요.");
+		System.out.println("공부한 과목을 입력하세요.");
 		String Subject2 = input.next();
 		this.setSubject2(Subject2);
 		
-		System.out.println("공부할 시간을 입력하세요.");
+		System.out.println("공부한 시간을 입력하세요.");
 		int TodayStudyTime = input.nextInt();
 		this.setTodayStudyTime(TodayStudyTime);
 		

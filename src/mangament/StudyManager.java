@@ -1,6 +1,7 @@
 package mangament;
 
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import management2.Holiday;
@@ -71,7 +72,7 @@ public class StudyManager {
 			num = input.nextInt();
 
 			if(num == 1) {
-				System.out.print("변경하고 싶은 (목z표)과목명을 입력하세요.");
+				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
 				String Subject1 = input.next();
 				for(int i = 0; i< Target.size(); i++) {
 					Studyinput studyinput = Target.get(i);

@@ -30,6 +30,6 @@ public class Holiday extends Study implements Studyinput {
 			break; 
 		default:
 		}
-		System.out.println( "종류: "+ skind + "\n과목: " + Subject1 + "\n공부한시간: " + TargetStudyTime);
+		System.out.println( "종류: "+ skind + "\n과목: " + Subject1 + "\n공부할 시간: " + TargetStudyTime);
 	}
 }

@@ -9,9 +9,23 @@ public class Semester extends Study implements Studyinput {
 	
 	public void getUserInput(Scanner input) {
 		
-		System.out.println("총 공부한시간을 입력하세요.");
-		int Goal = input.nextInt();
-		this.setGoal(Goal);
+		char answer = 'x';
+		while(answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
+			System.out.println("총 공부할 시간을 입력하기를 원하시나요? (Y/N)");
+			answer = input.next().charAt(0);
+			if(answer == 'y' || answer == 'Y') {
+				System.out.println("총 공부할시간을 입력하세요.");
+				int Goal = input.nextInt();
+				this.setGoal(Goal);
+			}
+			else if(answer == 'n' || answer == 'N') {
+				this.Goal = 0; 
+				break;
+			}
+			else {
+			}
+		}
+		
 		
 		System.out.println("공부할 과목을 입력하세요.");
 		String Subject1 = input.next();
@@ -33,7 +47,7 @@ public class Semester extends Study implements Studyinput {
 			break; 
 		default:
 		}
-		System.out.println( "종류: "+ skind + "\n총 공부 목표: " + Goal + "\n과목: " + Subject1 + "\n공부한시간: " + TargetStudyTime);
+		System.out.println( "종류: "+ skind + "\n총 공부 목표: " + Goal + "\n과목: " + Subject1 + "\n공부할 시간: " + TargetStudyTime);
 	}
 
 }
