@@ -1,27 +1,20 @@
 package management2;
 
 
-public abstract class Study {
-	protected StudyKind kind = StudyKind.학기중;
+public abstract class TargetStudy2 { // 목표 방학 
+	protected StudyKind kind = StudyKind.방학;
 	protected String Subject1;
-	protected int Goal;	
 	protected int TargetStudyTime; 
 	
-	public Study(StudyKind kind) {
+	public TargetStudy2(StudyKind kind) {
 	}
 	
-	public Study(String Subject1, int TargetStudyTime) {
+	public TargetStudy2(String Subject1, int TargetStudyTime) {
 		this.Subject1 = Subject1;
 		this.TargetStudyTime = TargetStudyTime;
 		
 	}
 	
-	public int getGoal() {
-		return Goal;
-	}
-	public void setGoal(int Goal) {
-		this.Goal= Goal;
-	}
 	public String getSubject1() {
 		return Subject1;
 	}

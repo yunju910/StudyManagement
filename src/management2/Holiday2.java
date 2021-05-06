@@ -2,7 +2,7 @@ package management2;
 
 import java.util.Scanner;
 
-public class Holiday2 extends Study2 implements Studyinput2 {
+public class Holiday2 extends TodayStudy2 implements Studyinput2 {
 	
 	public Holiday2(StudyKind kind2) {
 		super(kind2);

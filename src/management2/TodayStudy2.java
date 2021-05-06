@@ -2,16 +2,16 @@ package management2;
 
 import java.util.Scanner;
 
-public abstract class Study2 {
+public abstract class TodayStudy2 { // 오늘 방학
 	protected int Goal2; 
 	protected StudyKind kind = StudyKind.방학; 
 	protected String Subject2;
 	protected int TodayStudyTime; 
 	
-	public Study2(StudyKind kind2) {
+	public TodayStudy2(StudyKind kind2) {
 	}
 	
-	public Study2(String Subject2, int TodayStudyTime) { 
+	public TodayStudy2(String Subject2, int TodayStudyTime) { 
 		this.Subject2 = Subject2;
 		this.TodayStudyTime = TodayStudyTime;
 	}
