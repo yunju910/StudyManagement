@@ -7,8 +7,21 @@ public interface Studyinput {
 	public void getUserInput(Scanner input);
 	
 	public String getSubject1();
+	
 	public void setSubject1(String subject1);
-	public int getTargetStudyTime();
-	public void setTargetStudyTime(int targetStudyTime);
+	
+	public String getTargetStudyTime();
+	
+	public void setTargetStudyTime(String targetStudyTime);
+	
 	public void printInfo();
+	
+	public void setTargetSubject(Scanner input);
+	
+	public void setTargetStudy(Scanner input);
+	
+	public void setTargetSubject(Scanner input, String Subject);
+	
+	public void setTargetStudy(Scanner input, String Subject);
+	
 }

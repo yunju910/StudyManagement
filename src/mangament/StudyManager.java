@@ -1,15 +1,13 @@
 package mangament;
 
 import java.util.ArrayList;
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import management2.Holiday;
 import management2.Holiday2;
 import management2.Semester;
 import management2.Semester2;
-import management2.TargetStudy1;
-import management2.TodayStudy2;
 import management2.StudyKind;
 import management2.Studyinput;
 import management2.Studyinput2;
@@ -24,29 +22,39 @@ public class StudyManager {
 	public int kind;
 	public void TargetStudy() {
 		Studyinput studyinput;
-		while (kind	!= 1 && kind != 2) {
-			System.out.println("스터디 종류를 선택해주세요.");
-			System.out.println("1. 학기중");
-			System.out.println("2. 방학");
-			kind = input.nextInt();
-			if(kind == 1) {
-				studyinput = new Semester(StudyKind.학기중);
-				studyinput.getUserInput(input);
-				Target.add(studyinput);
-				break;
+		while (kind	!= 1 || kind != 2) {
+			try {
+				System.out.println("스터디 종류를 선택해주세요.");
+				System.out.println("1. 학기중");
+				System.out.println("2. 방학");
+				kind = input.nextInt();
+				if(kind == 1) {
+					studyinput = new Semester(StudyKind.학기중);
+					studyinput.getUserInput(input);
+					Target.add(studyinput);
+					break;
+				}
+				else if(kind == 2) {
+					studyinput = new Holiday(StudyKind.방학);
+					studyinput.getUserInput(input);
+					Target.add(studyinput);
+					break;
+				}
+				else {
+					System.out.print("1번과 2번 중에서 선택하세요.");
+				}
+				
 			}
-			else if(kind == 2) {
-				studyinput = new Holiday(StudyKind.방학);
-				studyinput.getUserInput(input);
-				Target.add(studyinput);
-				break;
+			catch(InputMismatchException e){
+				System.out.println("정수로 1과 2중에 하나를 입력해주세요!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1; 
 			}
-			else {
-				System.out.print("1번과 2번 중에서 선택하세요.");
-			}
-		
-		}
+		}	
 	}
+	
 	public void TodayStudy(){
 		Studyinput2 studyinput2;
 		if(kind == 1) {
@@ -63,63 +71,38 @@ public class StudyManager {
 	public void EditStudy(){
 		int num = -1;
 		while (num != 5) {
-			System.out.println("*** Student Management System Menu ***");
-			System.out.println("1. 목표 공부량 과목 수정 ");
-			System.out.println("2. 오늘 공부량 과목 수정");
-			System.out.println("3. 목표 공부량 시간 수정");
-			System.out.println("4. 오늘 공부량 시간 수정");
-			System.out.println("5. 종료");
+			showEditMenu();
 			num = input.nextInt();
-
-			if(num == 1) {
-				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
-				String Subject1 = input.next();
+			switch(num) {
+			case 1:
+				String TargetSubject1 = TargetInputSubject();
 				for(int i = 0; i< Target.size(); i++) {
-					Studyinput studyinput = Target.get(i);
-					if (studyinput.getSubject1().equals(Subject1)  ) {
-						System.out.println("변경할 과목명을 입력하세요.");
-						String subject1 = input.next();
-						studyinput.setSubject1(subject1);						
-					}
+					Studyinput study = Target.get(i); 
+					study.setTargetSubject(input, TargetSubject1);
 				}
-			}
-			else if(num == 2) {
-				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
-				String Subject2 = input.next();
-				for(int i = 0; i< Target.size(); i++) {
-					Studyinput2 studyinput2 = Today.get(i);
-					if (studyinput2.getSubject2().equals(Subject2)  ) {
-						System.out.println("변경할 과목명을 입력하세요.");
-						String subject2 = input.next();
-						studyinput2.setSubject2(subject2);
-					}
-				}
-			}
-			else if(num == 3) {
-				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
-				String Subject1 = input.next();
-				for(int i = 0; i< Target.size(); i++) {
-					Studyinput studyinput = Target.get(i);
-					if (studyinput.getSubject1().equals(Subject1)  ) {
-						System.out.println("변경할 시간을 입력하세요.");
-						int targetstudy = input.nextInt();
-						studyinput.setTargetStudyTime(targetstudy);	
-					}
-				}
-			}
-			else if(num == 4) {
-				System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
-				String Subject2 = input.next();
+				break;
+			case 2:
+				String TodaySubject1 = TodayInputSubject();
 				for(int i = 0; i< Today.size(); i++) {
-					Studyinput2 studyinput2 = Today.get(i);
-					if (studyinput2.getSubject2().equals(Subject2)  ) {
-						System.out.println("변경할 시간을 입력하세요.");
-						int todaystudy = input.nextInt();
-						studyinput2.setTodayStudyTime(todaystudy);	
-					}
+					Studyinput2 study = Today.get(i);
+					study.setTodaySubject(input, TodaySubject1);
 				}
-			}
-			else {
+				break;
+			case 3:
+				String TargetSubject2 = TargetInputSubject();
+				for(int i = 0; i< Target.size(); i++) {
+					Studyinput study = Target.get(i);
+					study.setTargetStudy(input, TargetSubject2);
+				}
+				break;
+			case 4:
+				String TodaySubject2 = TodayInputSubject();
+				for(int i = 0; i< Today.size(); i++) {
+					Studyinput2 study = Today.get(i);
+					study.setTodayStudy(input, TodaySubject2);
+				}
+				break;	
+			default: 
 				continue;
 			}
 		}
@@ -136,5 +119,58 @@ public class StudyManager {
 		for (int i = 0; i < Today.size(); i++) {
 			Today.get(i).printInfo();
 		}
+	}
+	
+	public void setTargetSubject(Studyinput target, Scanner input, String Subject) {
+		if (target.getSubject1().equals(Subject)  ) {
+			System.out.println("변경할 과목명을 입력하세요.");
+			String subject1 = input.next();
+			target.setSubject1(subject1);						
+		}
+	}
+	
+	public void setTodaySubject(Studyinput2 today, Scanner input, String Subject) {
+		if (today.getSubject2().equals(Subject)  ) {
+			System.out.println("변경할 과목명을 입력하세요.");
+			String subject2 = input.next();
+			today.setSubject2(subject2);
+		}
+	}
+	
+	public void setTargetStudy(Studyinput targettime, Scanner input, String Subject) {
+		if (targettime.getSubject1().equals(Subject)  ) {
+			System.out.println("변경할 시간을 입력하세요.");
+			String targetstudy = input.next();
+			targettime.setTargetStudyTime(targetstudy);	
+		}
+	}
+	
+	public void setTodayStudy(Studyinput2 todaytime, Scanner input, String Subject) {
+		if (todaytime.getSubject2().equals(Subject)  ) {
+			System.out.println("변경할 시간을 입력하세요.");
+			String todaystudy = input.next();
+			todaytime.setTodayStudyTime(todaystudy);	
+		}
+	}
+	
+	public String TargetInputSubject() {
+		System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
+		String Subject = input.next();
+		return Subject;
+	}
+	
+	public String TodayInputSubject() {
+		System.out.print("변경하고 싶은 (오늘)과목명을 입력하세요.");
+		String Subject = input.next();
+		return Subject; 
+	}
+	
+	public void showEditMenu() {
+		System.out.println("*** Student Management System Menu ***");
+		System.out.println("1. 목표 공부량 과목 수정 ");
+		System.out.println("2. 오늘 공부량 과목 수정");
+		System.out.println("3. 목표 공부량 시간 수정");
+		System.out.println("4. 오늘 공부량 시간 수정");
+		System.out.println("5. 종료");
 	}
 }
