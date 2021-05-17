@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 import exception.TimeFormatException;
 
-public abstract class TodayStudy implements Studyinput2{ // 오늘 방학
-	protected int Goal2; 
+public abstract class TodayStudy implements Studyinput2{ 
 	protected StudyKind kind = StudyKind.방학; 
 	protected String Subject2;
 	protected String TodayStudyTime; 
@@ -29,11 +28,11 @@ public abstract class TodayStudy implements Studyinput2{ // 오늘 방학
 		return TodayStudyTime;
 	}
 
-	public void setTodayStudyTime(String todayStudyTime) throws TimeFormatException{
+	public void setTodayStudyTime(String TodayStudyTime) throws TimeFormatException{
 		if(!TodayStudyTime.contains("시간")) {
 			throw new TimeFormatException();
 		}
-		TodayStudyTime = todayStudyTime;
+		this.TodayStudyTime = TodayStudyTime;
 	}
 
 	public abstract void printInfo();
@@ -46,12 +45,15 @@ public abstract class TodayStudy implements Studyinput2{ // 오늘 방학
 	}	
 	
 	public void setTodayStudy(Scanner input) {
-		System.out.println("공부한 시간을 입력하세요.");
-		String TodayStudyTime = input.next();
-		try {
-			this.setTodayStudyTime(TodayStudyTime);
-		} catch (TimeFormatException e) {
-			System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+		String TodayStudyTime = "";
+		while(!TodayStudyTime.contains("시간")) {
+			System.out.println("공부한 시간을 입력하세요.");
+			TodayStudyTime = input.next();
+			try {
+				this.setTodayStudyTime(TodayStudyTime);
+			} catch (TimeFormatException e) {
+				System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+			}
 		}
 	}
 	
@@ -65,13 +67,15 @@ public abstract class TodayStudy implements Studyinput2{ // 오늘 방학
 	
 	public void setTodayStudy(Scanner input, String Subject) {
 		if (this.getSubject2().equals(Subject)  ) {
-			System.out.println("변경할 시간을 입력하세요.");
-			String todaystudy = input.next();
-			try {
-				this.setTodayStudyTime(todaystudy);
-			} catch (TimeFormatException e) {
-				System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
-			}	
+			while(!TodayStudyTime.contains("시간")) {
+				System.out.println("변경할 시간을 입력하세요.");
+				String todaystudy = input.next();
+				try {
+					this.setTodayStudyTime(todaystudy);
+				} catch (TimeFormatException e) {
+					System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+				}	
+			}
 		}
 	}
 	

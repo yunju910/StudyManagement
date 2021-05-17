@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import exception.TimeFormatException;
 
-public abstract class TargetStudy implements Studyinput { // 목표 방학 
+public abstract class TargetStudy implements Studyinput { 
 	protected StudyKind kind = StudyKind.방학;
 	protected String Subject1;
 	protected String TargetStudyTime; 
@@ -15,7 +15,6 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	public TargetStudy(String Subject1, String TargetStudyTime) {
 		this.Subject1 = Subject1;
 		this.TargetStudyTime = TargetStudyTime;
-		
 	}
 	
 	public String getSubject1() {
@@ -47,7 +46,7 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	
 	public void setTargetStudy(Scanner input) {
 		String TargetStudyTime = "";
-		while (TargetStudyTime.contains("시간")){
+		while (!TargetStudyTime.contains("시간")){
 			System.out.println("공부할 시간을 입력하세요.");
 			TargetStudyTime = input.next();
 			try {
@@ -68,14 +67,18 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	}
 	
 	public void setTargetStudy(Scanner input, String Subject) {
-		if (this.getSubject1().equals(Subject)  ) {
-			System.out.println("변경할 시간을 입력하세요.");
-			String Targetstudy = input.next();
-			try {
-				this.setTargetStudyTime(Targetstudy);
-			} catch (TimeFormatException e) {
-				System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
-			}	
+		String Targetstudy = "";
+		if (this.getSubject1().equals(Subject)) {
+			while(!TargetStudyTime.contains("시간")) {
+				System.out.println("변경할 시간을 입력하세요.");
+				Targetstudy = input.next();
+				try {
+					this.setTargetStudyTime(Targetstudy);
+				} catch (TimeFormatException e) {
+					System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+				}
+			}
+				
 		}
 	}
 	

@@ -51,8 +51,7 @@ public class MenuManager {
 		System.out.println("1. 목표 공부량 ");
 		System.out.println("2. 오늘 공부량 ");
 		System.out.println("3. 공부량 수정하기");
-		System.out.println("4. 공부량 확인하기")
-		;
+		System.out.println("4. 공부량 확인하기");
 		System.out.println("5. 종료"); 
 	}
 }

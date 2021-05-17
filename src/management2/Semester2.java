@@ -3,6 +3,7 @@ package management2;
 import java.util.Scanner;
 
 public class Semester2 extends SemesterStudy2 {
+	
 	public Semester2 (StudyKind kind2) {
 		super(kind2);
 	}
