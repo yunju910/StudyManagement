@@ -2,6 +2,8 @@ package management2;
 
 import java.util.Scanner;
 
+import exception.TimeFormatException;
+
 public interface Studyinput2 {
 	
 	public void getUserInput(Scanner input);
@@ -12,7 +14,7 @@ public interface Studyinput2 {
 	
 	public String getTodayStudyTime();
 	
-	public void setTodayStudyTime(String todayStudyTime);
+	public void setTodayStudyTime(String todayStudyTime) throws TimeFormatException;
 	
 	public void printInfo();
 	
