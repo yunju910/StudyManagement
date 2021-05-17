@@ -120,38 +120,7 @@ public class StudyManager {
 			Today.get(i).printInfo();
 		}
 	}
-	
-	public void setTargetSubject(Studyinput target, Scanner input, String Subject) {
-		if (target.getSubject1().equals(Subject)  ) {
-			System.out.println("변경할 과목명을 입력하세요.");
-			String subject1 = input.next();
-			target.setSubject1(subject1);						
-		}
-	}
-	
-	public void setTodaySubject(Studyinput2 today, Scanner input, String Subject) {
-		if (today.getSubject2().equals(Subject)  ) {
-			System.out.println("변경할 과목명을 입력하세요.");
-			String subject2 = input.next();
-			today.setSubject2(subject2);
-		}
-	}
-	
-	public void setTargetStudy(Studyinput targettime, Scanner input, String Subject) {
-		if (targettime.getSubject1().equals(Subject)  ) {
-			System.out.println("변경할 시간을 입력하세요.");
-			String targetstudy = input.next();
-			targettime.setTargetStudyTime(targetstudy);	
-		}
-	}
-	
-	public void setTodayStudy(Studyinput2 todaytime, Scanner input, String Subject) {
-		if (todaytime.getSubject2().equals(Subject)  ) {
-			System.out.println("변경할 시간을 입력하세요.");
-			String todaystudy = input.next();
-			todaytime.setTodayStudyTime(todaystudy);	
-		}
-	}
+
 	
 	public String TargetInputSubject() {
 		System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");

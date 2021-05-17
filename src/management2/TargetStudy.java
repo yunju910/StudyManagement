@@ -2,6 +2,8 @@ package management2;
 
 import java.util.Scanner;
 
+import exception.TimeFormatException;
+
 public abstract class TargetStudy implements Studyinput { // 목표 방학 
 	protected StudyKind kind = StudyKind.방학;
 	protected String Subject1;
@@ -21,15 +23,18 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	}
 
 	public void setSubject1(String subject1) {
-		this.Subject1 = subject1;
+		this.Subject1 = subject1;	
 	}
 
 	public String getTargetStudyTime() {
 		return TargetStudyTime;
 	}
 
-	public void setTargetStudyTime(String targetStudyTime) {
-		this.TargetStudyTime = targetStudyTime;
+	public void setTargetStudyTime(String TargetStudyTime) throws TimeFormatException{
+		if(!TargetStudyTime.contains("시간")) {
+			throw new TimeFormatException();
+		}
+		this.TargetStudyTime = TargetStudyTime;
 	}
 
 	public abstract void printInfo();
@@ -41,9 +46,17 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	}	
 	
 	public void setTargetStudy(Scanner input) {
-		System.out.println("공부할 시간을 입력하세요.");
-		String TargetStudyTime = input.next();
-		this.setTargetStudyTime(TargetStudyTime);
+		String TargetStudyTime = "";
+		while (TargetStudyTime.contains("시간")){
+			System.out.println("공부할 시간을 입력하세요.");
+			TargetStudyTime = input.next();
+			try {
+				this.setTargetStudyTime(TargetStudyTime);
+			} catch (TimeFormatException e) {
+				System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+			}
+		}
+		
 	}
 	
 	public void setTargetSubject(Scanner input, String Subject) {
@@ -57,8 +70,12 @@ public abstract class TargetStudy implements Studyinput { // 목표 방학
 	public void setTargetStudy(Scanner input, String Subject) {
 		if (this.getSubject1().equals(Subject)  ) {
 			System.out.println("변경할 시간을 입력하세요.");
-			String targetstudy = input.next();
-			this.setTargetStudyTime(targetstudy);	
+			String Targetstudy = input.next();
+			try {
+				this.setTargetStudyTime(Targetstudy);
+			} catch (TimeFormatException e) {
+				System.out.println("잘못된 시간을 입력했습니다. XX시간이라고 입력해주세요."); 
+			}	
 		}
 	}
 	
