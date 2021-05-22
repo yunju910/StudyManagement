@@ -1,10 +1,15 @@
 package management2;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.TimeFormatException;
 
-public abstract class TargetStudy implements Studyinput { 
+public abstract class TargetStudy implements Studyinput, Serializable { 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2895035033030369326L;
 	protected StudyKind kind = StudyKind.πÊ«–;
 	protected String Subject1;
 	protected String TargetStudyTime; 

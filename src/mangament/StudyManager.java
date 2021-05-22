@@ -1,5 +1,6 @@
 package mangament;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,10 +13,15 @@ import management2.StudyKind;
 import management2.Studyinput;
 import management2.Studyinput2;
 
-public class StudyManager {
+public class StudyManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1163469073322325922L;
+	
 	ArrayList<Studyinput> Target = new ArrayList<Studyinput>();
 	ArrayList<Studyinput2> Today = new ArrayList<Studyinput2>();
-	Scanner input;
+	transient Scanner input;
 	StudyManager(Scanner input){
 		this.input = input;
 	}

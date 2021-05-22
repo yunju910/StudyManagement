@@ -1,0 +1,2 @@
+5¿ù 22, 2021 12:34:06 ¿ÀÀü log.EventLogger log
+INFO: View a list of Study
