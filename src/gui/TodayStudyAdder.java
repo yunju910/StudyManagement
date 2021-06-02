@@ -2,15 +2,17 @@ package gui;
 
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class TodayStudyAdder extends JFrame {
+public class TodayStudyAdder extends JPanel {
 
-	public TodayStudyAdder() {
+	WindowFrame frame;
+	
+	public TodayStudyAdder(WindowFrame frame) {
+		this.frame = frame;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -30,11 +32,9 @@ public class TodayStudyAdder extends JFrame {
 		panel.add(new JButton("cancel"));
 		
 		SpringUtilities.makeCompactGrid(panel, 3, 2, 6, 6, 6, 6);
-		
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setContentPane(panel);
-		this.setVisible(true);
+	
+		this.add(panel);
+		this.setVisible(true); 	
 		
 	}
 }

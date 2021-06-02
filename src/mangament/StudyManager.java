@@ -25,6 +25,10 @@ public class StudyManager implements Serializable {
 	StudyManager(Scanner input){
 		this.input = input;
 	}
+	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
 	public int kind;
 	public void TargetStudy() {
 		Studyinput studyinput;
@@ -126,7 +130,22 @@ public class StudyManager implements Serializable {
 			Today.get(i).printInfo();
 		}
 	}
+	
+	public int Targetsize() {
+		return Target.size();
+	}
+	
+	public int Todaysize() {
+		return Today.size();
+	}
 
+	public Studyinput Target_get(int index) {
+		return (Studyinput)Target.get(index);
+	}
+	
+	public Studyinput2 Today_get(int index) {
+		return (Studyinput2)Today.get(index);
+	}
 	
 	public String TargetInputSubject() {
 		System.out.print("변경하고 싶은 (목표)과목명을 입력하세요.");
@@ -139,6 +158,7 @@ public class StudyManager implements Serializable {
 		String Subject = input.next();
 		return Subject; 
 	}
+
 	
 	public void showEditMenu() {
 		System.out.println("*** Student Management System Menu ***");
