@@ -29,6 +29,17 @@ public class StudyManager implements Serializable {
 	public void setScanner(Scanner input) {
 		this.input = input;
 	}
+	
+	public void TargetStudy(String Subject1, String TargetStudyTime) {
+		Studyinput studyinput = new Holiday(StudyKind.방학);
+		studyinput.getUserInput(input);
+		Target.add(studyinput);
+	}
+	
+	public void TargetStudy(Studyinput studyinput) {
+		Target.add(studyinput);
+	}
+	
 	public int kind;
 	public void TargetStudy() {
 		Studyinput studyinput;
@@ -63,6 +74,16 @@ public class StudyManager implements Serializable {
 				kind = -1; 
 			}
 		}	
+	}
+	
+	public void TodayStudy(String Subject2, String TodayStudyTime){
+		Studyinput2 studyinput2 = new Holiday2(StudyKind.방학);
+		studyinput2.getUserInput(input);
+		Today.add(studyinput2);
+	}
+	
+	public void TodayStudy(Studyinput2 studyinput2){
+		Today.add(studyinput2);
 	}
 	
 	public void TodayStudy(){

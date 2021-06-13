@@ -7,18 +7,18 @@ import javax.swing.JButton;
 import gui.TargetStudyAdder;
 import gui.WindowFrame;
 
-public class ButtonAddTargetListener implements ActionListener {
+public class StudyCancelListener implements ActionListener {
 	
 	WindowFrame frame;
 
-	public ButtonAddTargetListener(WindowFrame frame) {
+	public StudyCancelListener(WindowFrame frame) {
 		this.frame = frame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getTarget());
+		frame.getContentPane().add(frame.getMenuselection());
 		frame.revalidate();
 		frame.repaint();
 	}

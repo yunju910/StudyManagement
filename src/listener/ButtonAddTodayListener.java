@@ -17,9 +17,10 @@ public class ButtonAddTodayListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton b = (JButton) e.getSource();
-		TodayStudyAdder today = frame.getToday();
-		frame.setupPanel(today);
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(frame.getToday());
+		frame.revalidate();
+		frame.repaint();
 	}
 
 }

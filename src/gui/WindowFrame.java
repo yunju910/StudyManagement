@@ -19,8 +19,8 @@ public class WindowFrame extends JFrame{
 		
 		this.studymanager = studymanager;
 		this.menuselection = new MenuSelection(this);		
-		this.target = new TargetStudyAdder(this);
-		this.today = new TodayStudyAdder(this);
+		this.target = new TargetStudyAdder(this, this.studymanager);
+		this.today = new TodayStudyAdder(this, this.studymanager);
 		this.studyviewer = new StudyViewer(this, this.studymanager);
 		
 		this.setupPanel(menuselection);

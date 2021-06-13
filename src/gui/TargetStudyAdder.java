@@ -2,18 +2,24 @@ package gui;
 
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import listener.StudyCancelListener;
+import listener.TargetAdderListener;
+import mangament.StudyManager;
+
 public class TargetStudyAdder extends JPanel {
 	
 	WindowFrame frame;
+	StudyManager studymanager;
 
-	public TargetStudyAdder(WindowFrame frame) {
+	public TargetStudyAdder(WindowFrame frame, StudyManager studymanager) {
 		this.frame = frame;
+		this.studymanager = studymanager;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -26,11 +32,18 @@ public class TargetStudyAdder extends JPanel {
 		JLabel labelTime = new JLabel("Study Time: ", JLabel.TRAILING);
 		JTextField fieldTime = new JTextField(10);
 		labelSubject.setLabelFor(fieldTime);
+		
+		JButton saveButton = (new JButton("save"));
+		saveButton.addActionListener(new TargetAdderListener(fieldSubject, fieldTime, studymanager));
+		
+		JButton cancelButton = (new JButton("cancel"));
+		cancelButton.addActionListener(new StudyCancelListener(frame));
+		
 		panel.add(labelTime);
 		panel.add(fieldTime);
 		
-		panel.add(new JButton("save"));
-		panel.add(new JButton("cancel"));
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 3, 2, 6, 6, 6, 6);
 		
